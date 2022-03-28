@@ -24,6 +24,8 @@ export type Item = {
   vote_count?: number;
   video?: boolean;
   vote_average?: number;
+  media_type?:string;
+  watched?: boolean;
 };
 
 export type Data = {

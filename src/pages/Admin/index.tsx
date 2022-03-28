@@ -1,26 +1,34 @@
-import { FC, useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { FC, useContext, useEffect } from "react"
+import { useSearchParams } from "react-router-dom";
 import { InfoList } from "../../components/common/parts";
 import { Layout } from "../../components/layout";
 import { WithAuth } from "../../hoc";
 import { useInfoDB } from "../../hooks";
+import { Container } from "@mui/material";
 
 const Admin: FC = () => {
-    
-    const { information, getMovies } = useInfoDB()
-    const { page } = useParams<{ page: string }>()
-    
-    console.log(page)
+    const { information, getMoviesDB, getConsultMultiSearch, getItemsFb } = useInfoDB();
+    let [searchParams, setSearchParams] = useSearchParams();
+    let page = searchParams.get("page");
+    let search = searchParams.get("search");
 
-    // useEffect(() => {
-    //     getMovies(page)
-    // }, [])
-    
-    console.log(information)
+    useEffect(() => {
+        if (search) {
+            getConsultMultiSearch(search, page)
+        } else {
+            getMoviesDB(page)
+        }
+    }, [searchParams])
+
+
     return (
-        <Layout>
-            <InfoList information={information?.results} page={information?.page} totalPages={information?.total_pages} totalResults={information?.total_results}/>
-        </Layout>
+        <>
+            <Layout>
+                <Container>
+                    <InfoList information={information?.results} page={information?.page} totalPages={information?.total_pages} totalResults={information?.total_results} />
+                </Container>
+            </Layout>
+        </>
     )
 }
 

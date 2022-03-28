@@ -11,8 +11,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { InputSearch } from '../../common';
 
-const pages = ['Home', 'Peliculas', 'Admin'];
+const pages = ['Home', 'Movies', 'Admin'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 
@@ -30,6 +32,7 @@ const Header = () => {
     };
 
     const handleCloseNavMenu = () => {
+        console.log("Hola");
         setAnchorElNav(null);
     };
 
@@ -37,7 +40,7 @@ const Header = () => {
         setAnchorElUser(null);
     };
     return (
-        <AppBar position="static">
+        <AppBar position="fixed" enableColorOnDark={true}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -46,7 +49,7 @@ const Header = () => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
-                        LOGO
+                        Cinemada
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -80,7 +83,8 @@ const Header = () => {
                         >
                             {pages.map((page) => (
                                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                    <Link to={page === "Movies" ? "/movies" : page === "Admin" ? `/admin` : "/"}>{page}</Link>
+                                    <h1>hola</h1>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -93,17 +97,20 @@ const Header = () => {
                     >
                         LOGO
                     </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                <Link to={page === "Movies" ? "/movies" : page === "Admin" ? `/admin` : "/"}> {page}</Link>
                             </Button>
                         ))}
                     </Box>
+
+                    
+                    { }<InputSearch />
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">

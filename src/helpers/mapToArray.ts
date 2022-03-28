@@ -3,7 +3,7 @@ const mapToArray = (object: any) => {
     for (const elem in object) {
        array.push({
           ...object[elem],
-          id: elem
+          idDB: elem
        })
     }
     return array
