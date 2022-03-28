@@ -52,9 +52,7 @@ const useAuth = () => {
     const loginWithToken = async () => {
         try {
             const users: User[] = await getUsers()
-            console.log(users.find((u) => u.sessionToken === tokenStorage));
             const userLogged = users.find((u) => u.sessionToken === tokenStorage)
-            console.log(userLogged);
             if (userLogged) {
                 setHasUserLoggedIn(true)
                 dispatch({
@@ -76,7 +74,6 @@ const useAuth = () => {
             payload: {}
         })
         history("/login")
-        console.log(state);
     }
 
     const resetPassword = () => {
