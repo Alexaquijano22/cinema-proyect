@@ -8,6 +8,8 @@ const defaultValues: Omit<User,'id'> = {
     birthdate: "",
     email: "",
     password: "",
+    rol: "user",
+    viewed: []
 }
 
 const SignUp: FC = () => {

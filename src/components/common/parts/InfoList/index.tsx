@@ -1,5 +1,6 @@
 
-import { FC } from "react"
+import { FC, useContext } from "react"
+import { AuthContext } from "../../../../context/Auth"
 import { Item } from "../../../../types"
 import { Card, Pagination } from "../../../common"
 
@@ -12,6 +13,8 @@ type Props = {
 
 
 const InfoList: FC<Props> = ({ information, page, totalPages, totalResults }) => {
+
+
     return (
         <>
             {information?.map((item) => {
