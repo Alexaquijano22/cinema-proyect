@@ -4,8 +4,10 @@ export type User = {
   email?: string;
   birthdate?: string;
   password?: string;
-  id?: string;
+  idDB?: string;
   sessionToken?: string;
+  viewed?: string[];
+  rol?: string;
 };
 
 export type Item = {
@@ -19,6 +21,7 @@ export type Item = {
   original_title?: string;
   original_language?: string;
   title?: string;
+  original_name?: string;
   backdrop_path?: string | null;
   popularity?: number;
   vote_count?: number;
@@ -33,5 +36,19 @@ export type Data = {
   results: Item[];
   total_pages: number;
   total_results: number;
+}
+
+export type Video ={
+  iso_639_1: string,
+  iso_3166_1: string,
+  name: string,
+  key: string,
+  site: string,
+  size: number,
+  type: string,
+  official: boolean,
+  published_at: string,
+  id: string,
+
 }
 

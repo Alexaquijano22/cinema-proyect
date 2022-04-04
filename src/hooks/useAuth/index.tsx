@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { generateToken, getUsers } from "../../api";
 import { AuthContext } from "../../context/Auth";
 import { User } from "../../types";
+import { useUsers } from "../useUsers";
 
 export type PayloadLogin = {
     email: string;
@@ -13,6 +13,7 @@ const useAuth = () => {
     const [ hasUserLoggedIn, setHasUserLoggedIn ] = useState<boolean | undefined>()
     const { state, dispatch } = useContext(AuthContext);
     const [tokenStorage, setTokenStorage] = useState<string | undefined>(localStorage.getItem("token") || undefined);
+    const {generateToken, getUsers} = useUsers()
     
     const history = useNavigate()
 
@@ -23,7 +24,6 @@ const useAuth = () => {
     useEffect(() => {
         loginWithToken()
     }, [])
-
 
     const login = async (data: PayloadLogin) => {
         try {
@@ -53,7 +53,7 @@ const useAuth = () => {
         try {
             const users: User[] = await getUsers()
             const userLogged = users.find((u) => u.sessionToken === tokenStorage)
-            if (userLogged) {
+            if (userLogged && tokenStorage !== undefined) {
                 setHasUserLoggedIn(true)
                 dispatch({
                     type: "LOGIN",

@@ -1,7 +1,7 @@
 import { createContext, Dispatch, FC, useReducer } from "react";
 
 type InitialStateType = {
-    inputSearch: string,
+    ubication: string,
 }
 
 type ContextType = {
@@ -10,7 +10,7 @@ type ContextType = {
 }
 
 const initialState = {
-    inputSearch: "",
+    ubication: "",
 }
 
 const AdminContext = createContext<ContextType>({state: initialState, dispatch: () => null})
@@ -18,8 +18,8 @@ const AdminContext = createContext<ContextType>({state: initialState, dispatch: 
 
 let adminReducer = (state: any, action: { type: any; payload: any; }) => {
     switch (action.type) {
-        case "SEARCH":
-            return { ...state, inputSearch: action.payload }
+        case "UBICATION":
+            return { ...state, ubication: action.payload }
         default:
             return initialState
     }

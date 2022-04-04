@@ -1,17 +1,16 @@
 import { Container } from "@mui/material"
-import { FC, useContext, useEffect } from "react"
+import { FC, useEffect } from "react"
 import { InfoList } from "../../components/common/parts"
 import { Layout } from "../../components/layout"
-import { AuthContext } from "../../context/Auth"
 import { WithAuth } from "../../hoc"
 import { useInfoDB } from "../../hooks"
 
-const Movies: FC = () => {
+const Series: FC = () => {
 
-    const { itemsFb, getMoviesFb } = useInfoDB();
+    const { itemsFb, getSeriesFb } = useInfoDB();
 
     useEffect(() => {
-        getMoviesFb()
+        getSeriesFb()
     }, [])
 
     return (
@@ -23,4 +22,4 @@ const Movies: FC = () => {
     )
 }
 
-export const MoviesPage = WithAuth(Movies);
+export const SeriesPage = WithAuth(Series)
