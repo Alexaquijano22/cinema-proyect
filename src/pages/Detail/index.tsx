@@ -10,24 +10,24 @@ const Detail = () => {
     const urlDetail = window.location.href;
     const idItem = urlDetail.substring(urlDetail.lastIndexOf('/') + 1);
 
-    const { getItemFb, itemFb, videosItem, getItemVideos, itemsFb } = useInfoDB()
+    const { getItem, item, videosItem, getItemVideos, itemsFb } = useInfoDB()
     
 
     useEffect(() => {
-        getItemFb(`${idItem}`)
+        getItem(idItem)
     }, [idItem])
 
     useEffect(() => {
-        if (itemFb) {
-            getItemVideos(itemFb?.media_type, itemFb?.id)
+        if (item) {
+            getItemVideos(item?.media_type, item?.id)
         }
-    }, [itemFb])
+    }, [item])
 
     
 
     return (
         <Layout>
-            <CardDetail infoCard={itemFb} videos={videosItem} />
+            <CardDetail infoCard={item} videos={videosItem} />
             <InfoList information={itemsFb} />
         </Layout>
     )
