@@ -37,8 +37,17 @@ const CardComponent: FC<Props> = ({ information }) => {
         }
     }   
 
+    const loadDetail = (id: string | undefined) => {
+        console.log(id)
+        if (id) {
+            history(`/detail/${information.idDB}`)
+        } else {
+            history(`/detail/${information.id}`)
+        }
+    }
+
     return (
-        <Card sx={{ maxWidth: 345 }} onClick={() => history(`/detail/${information.idDB}`)}>
+        <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
                 alt="green iguana"

@@ -12,17 +12,17 @@ type Props = {
 }
 
 
-const InfoList: FC<Props> = ({ information, page, totalPages, totalResults }) => {
+const InfoList: FC<Props> = ({ information, page, totalPages }) => {
 
 
     return (
         <>
             {information?.map((item) => {
                 return (
-                    <Card information={item} key={item.id}/>
+                    <Card information={item} key={item.id} />
                 )
             })}
-            <Pagination totalPages={totalPages} page={page}/>
+            <Pagination totalPages={totalPages} page={page} />
         </>
     )
 }

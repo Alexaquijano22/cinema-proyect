@@ -8,14 +8,14 @@ const useInfoDB = () => {
 
     const [information, setInformation] = useState<Data>()
     const [itemsFb, setItemsFb] = useState<Item[]>([]);
-    const [itemFb, setItemFb] = useState<Item>();
+    const [item, setItem] = useState<Item>();
     const [videosItem, setVideosItem] = useState<Video[]>();
-    const {state, dispatch} = useContext(AuthContext)
+    const { state, dispatch } = useContext(AuthContext)
 
     useEffect(() => {
-      getItemsFb()
+        getItemsFb()
     }, [])
-    
+
     const getMoviesDB = async (page: string | null) => {
         try {
             const response = await apiMoviesDB.get(`/movie/top_rated?page=${Number(page === null ? "1" : page)}`)
@@ -35,30 +35,57 @@ const useInfoDB = () => {
         }
     }
 
-    const getItemFb = async (id: string) => {
+    const getItem = async (id: string) => {
         try {
-            const response = await apiFirebase.get(`/items/${id}.json`)
-            setItemFb(response.data)
-            return response.data
+            const listFb = await getItemsFb();
+            const filterFb = listFb?.find((item: Item) => item.idDB === id)
+            let responseDB;
+            if (filterFb) {
+                const responseFirebase = await apiFirebase.get(`/items/${id}.json`)
+                setItem(responseFirebase.data)
+            } else {
+                responseDB = await apiMoviesDB(`/movie/${id}`).then((response) => {
+                    setItem(response.data)
+                }).catch(async (e) => {
+                    if (e.response.data.status_message === "The resource you requested could not be found.") {
+                        responseDB = await apiMoviesDB(`/tv/${id}`)
+                        setItem(responseDB.data)
+                    }
+                })
+            }
         } catch (e) {
             console.log(e);
         }
     }
 
+
     const getItemVideos = async (type: string | undefined, id: number | undefined) => {
+        let response;
         try {
-            const response = await apiMoviesDB.get(`/${type}/${id}/videos`)
-            setVideosItem(response.data.results)
+            if (type) {
+                response = await apiMoviesDB.get(`/${type}/${id}/videos`)
+                setVideosItem(response.data.results)
+            } else {
+                response = await apiMoviesDB.get(`/movie/${id}/videos`).then((response) => {
+                    setVideosItem(response.data.results)
+                }).catch(async (e) => {
+                    if (e.response.data.status_message === "The resource you requested could not be found.") {
+                        response = await apiMoviesDB(`/tv/${id}/videos`)
+                        setVideosItem(response.data.results)
+                    }
+                    
+                })
+            }
         } catch (e) {
             console.log(e);
         }
-    }   
+    }
 
     const getMoviesFb = async () => {
         try {
             const response = await getItemsFb();
             const filterMovies = response?.filter((item: Item) => item.media_type === 'movie')
-            if(filterMovies) setItemsFb(filterMovies)
+            if (filterMovies) setItemsFb(filterMovies)
         } catch (e) {
             console.log(e);
         }
@@ -68,7 +95,7 @@ const useInfoDB = () => {
         try {
             const response = await getItemsFb();
             const filterSeries = response?.filter((item: Item) => item.media_type === 'tv')
-            if(filterSeries) setItemsFb(filterSeries)
+            if (filterSeries) setItemsFb(filterSeries)
         } catch (e) {
             console.log(e);
         }
@@ -77,7 +104,7 @@ const useInfoDB = () => {
 
     const addItemFb = async (data: Item) => {
         try {
-            await apiFirebase.post("/items.json", !data.media_type ? {...data, media_type: "movie"} : data);
+            await apiFirebase.post("/items.json", !data.media_type ? { ...data, media_type: "movie" } : data);
             await getItemsFb()
         } catch (e) {
             console.log(e);
@@ -137,7 +164,7 @@ const useInfoDB = () => {
         return state.userLogged.viewed?.includes(id)
     }
 
-    return { information, itemsFb, itemFb, videosItem, getItemVideos, getItemFb, getMoviesDB, getConsultMultiSearch, addItemFb, deleteItemFb, isItemInFb, getItemsFb, isItemViewed, addToItemsViewed, deleteToItemsViewed, getMoviesFb, getSeriesFb}
+    return { information, itemsFb, item, videosItem, getItemVideos, getItem, getMoviesDB, getConsultMultiSearch, addItemFb, deleteItemFb, isItemInFb, getItemsFb, isItemViewed, addToItemsViewed, deleteToItemsViewed, getMoviesFb, getSeriesFb }
 }
 
 export { useInfoDB }
