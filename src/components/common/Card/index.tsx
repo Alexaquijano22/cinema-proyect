@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react"
+import { FC, useContext } from "react"
 import { Item } from "../../../types"
 import { Card, CardMedia, CardContent, Typography, CardActions } from "@mui/material"
 import { Buttons } from '../index'
@@ -38,7 +38,6 @@ const CardComponent: FC<Props> = ({ information }) => {
     }   
 
     const loadDetail = (id: string | undefined) => {
-        console.log(id)
         if (id) {
             history(`/detail/${information.idDB}`)
         } else {
@@ -47,7 +46,7 @@ const CardComponent: FC<Props> = ({ information }) => {
     }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }} onClick={() => loadDetail(information.idDB)}>
             <CardMedia
                 component="img"
                 alt="green iguana"
@@ -62,7 +61,7 @@ const CardComponent: FC<Props> = ({ information }) => {
             <CardActions>
                 {state.userLogged.rol !== "user" ? (
                     isItemInFb(information.id) === true ? (
-                        <Buttons onClick={() => addOrDeleteItem(information, "delete")}>Eliminar</Buttons>
+                        <Buttons primary={true} onClick={() => addOrDeleteItem(information, "delete")}>Eliminar</Buttons>
 
                     ) : <Buttons onClick={() => addOrDeleteItem(information, "add")}>Agregar</Buttons>
                 ) : (

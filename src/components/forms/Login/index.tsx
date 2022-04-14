@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks";
@@ -6,6 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { validationSquema } from "./validation-schema";
 import { defaultValues } from "./default-values";
 import { PayloadLogin } from "../../../hooks/useAuth";
+import { Grid, TextField } from "@mui/material";
+import { Buttons } from "../../common";
 
 
 
@@ -24,26 +26,35 @@ const Login: FC = () => {
         }
     }
 
-    const { register, formState: {errors}, handleSubmit } = useForm({
+    const { register, formState: { errors }, handleSubmit } = useForm({
         resolver: yupResolver(validationSquema),
         defaultValues,
     })
 
     return (
-
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="text" {...register("email")} />
-                {errors.email?.message}
-            </div>
-            <div>
-                <label htmlFor="pass">Contraseña</label>
-                <input id="pass" type="password" {...register("password")} />
-                {errors.password?.message}
-            </div>
-            <button type="submit">Iniciar sesion</button>
-        </form>
+        <>
+            <form action="" onSubmit={handleSubmit(onSubmit)}>
+                <Grid item >
+                    <TextField
+                        id="email"
+                        label="Email"
+                        type="text"
+                        {...register("email")}
+                    />
+                </Grid>
+                    {errors.email?.message}
+                <Grid item>
+                    <TextField
+                        id="pass"
+                        label="Password"
+                        type="password"
+                        {...register("password")}
+                    />
+                </Grid>
+                    {errors.password?.message}
+                <Buttons type="submit" color="primary" variant="contained">Iniciar sesion</Buttons>
+            </form>
+        </>
     )
 }
 

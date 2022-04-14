@@ -3,7 +3,9 @@ import { FC } from "react"
 import styled from "styled-components"
 
 const MainTag = styled(Container)`
-    margin-top: 100px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 `
 
 const Main: FC = ({children}) => {
