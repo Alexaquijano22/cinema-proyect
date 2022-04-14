@@ -4,7 +4,7 @@ import { useContext } from 'react';
 
 const pagesUser = ['home', 'movies', 'series'];
 const pagesAdmin = ['home', 'movies', 'series','admin', 'users'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Logout'];
 
 
 const Header = () => {
