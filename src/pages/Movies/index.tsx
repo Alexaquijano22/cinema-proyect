@@ -17,7 +17,7 @@ const Movies: FC = () => {
     return (
         <Layout>
             <Container>
-                <InfoList information={itemsFb} />
+                <InfoList information={itemsFb} site="movies"/>
             </Container>
         </Layout>
     )

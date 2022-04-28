@@ -20,12 +20,19 @@ import {
   Paper,
   ThemeProvider,
   useMediaQuery,
-  lighten
+  lighten,
+  Box,
+  Alert,
+  AlertTitle
 } from "@mui/material";
 
 const PaperApp = styled(Paper)`
   &.css-ql5gy6-MuiPaper-root {
     background: #585858;
+  }
+
+  &.css-1v4eudz-MuiPaper-root{
+    background: #ebebeb; 
   }
   
 `;
@@ -119,6 +126,7 @@ const App: FC = () => {
     <BrowserRouter>
       <AuthProvider>
         <AdminProvider>
+       
           <ThemeProvider theme={theme}>
             <PaperApp
               style={{ height: "100vh", overflowY: "auto" }}

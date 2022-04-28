@@ -10,15 +10,15 @@ export type PayloadLogin = {
 }
 
 const useAuth = () => {
-    const [ hasUserLoggedIn, setHasUserLoggedIn ] = useState<boolean | undefined>()
+    const [hasUserLoggedIn, setHasUserLoggedIn] = useState<boolean | undefined>()
     const { state, dispatch } = useContext(AuthContext);
     const [tokenStorage, setTokenStorage] = useState<string | undefined>(localStorage.getItem("token") || undefined);
-    const {generateToken, getUsers} = useUsers()
-    
+    const { generateToken, getUsers } = useUsers()
+
     const history = useNavigate()
 
     useEffect(() => {
-        if(tokenStorage) localStorage.setItem("token", tokenStorage)
+        if (tokenStorage) localStorage.setItem("token", tokenStorage)
     }, [tokenStorage])
 
     useEffect(() => {
@@ -45,6 +45,15 @@ const useAuth = () => {
             }
         } catch (e) {
             console.log(e)
+            dispatch({
+                type: "ALERT",
+                payload: {
+                    state: true,
+                    mode: "error",
+                    title: "Error",
+                    message: "El usuario o la contraseña son incorrectos, intentalo de nuevo"
+                }
+            })
         }
 
     }
@@ -76,15 +85,7 @@ const useAuth = () => {
         history("/login")
     }
 
-    const resetPassword = () => {
-        console.log(`Reset password`);
-    }
-
-    const refreshToken = () => {
-        console.log(`Refresh token`);
-    }
-
-    return { login, loginWithToken, logout, resetPassword, refreshToken, hasUserLoggedIn }
+    return { login, loginWithToken, logout, hasUserLoggedIn }
 }
 
 export { useAuth }
