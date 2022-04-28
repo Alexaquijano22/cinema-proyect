@@ -5,3 +5,4 @@ export { PaginationC as Pagination } from "./Pagination"
 export { InputSearch } from "./InputSearch";
 export { CardDetail } from './CardDetail';
 export { Links } from "./Link"
+export { CardLogin } from "./CardLogin"

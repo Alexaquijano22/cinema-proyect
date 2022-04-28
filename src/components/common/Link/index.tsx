@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from '@mui/material';
+import { lighten, Link, Typography } from '@mui/material';
 import styled from 'styled-components';
 
 interface InterfaceLink {
@@ -12,24 +12,26 @@ interface InterfaceLink {
 const CommonLink = styled(Link) <InterfaceLink>`
     
     &.MuiLink-root{
-        outline: none;
         text-transform: capitalize;
-    }
-    &.MuiLink-underlineHover{
-        /* background-color: #fefefe; */
     }
 `
 
 type Props = {
     onClick?: () => any;
     goto?: () => any;
+    variant?: "button" | "caption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "overline" | "inherit" | undefined;
+    underline?: "none" | "hover" | "always";
+    color?: string;
+    text?: string;
+    variantText?: "button" | "caption" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "subtitle1" | "subtitle2" | "body1" | "body2" | "overline" | "inherit" | undefined;
+    colorText?: string
 }
 
 
-const Links: FC<Props> = ({ onClick , children}) => {
+const Links: FC<Props> = ({ onClick, children, variant, underline, color, text, variantText, colorText }) => {
     return (
-        <CommonLink color="secondary" underline="hover" component="button" onClick={onClick}
-            variant="body2">{children}</CommonLink>
+        <CommonLink sx={{textDecorationColor: theme => lighten(theme.palette.secondary.contrastText, 0.1)}} color={color || "secondary"} underline={underline || "hover"} component="button" onClick={onClick} 
+            variant={variant || "body2"}><Typography variant={variantText || "h6"} sx={{color: color === "dark" ? theme => lighten(theme.palette.secondary.main, 0) : theme => lighten(theme.palette.text.primary, 0), fontWeight: "600"}}>{text}</Typography></CommonLink>
     )
 }
 

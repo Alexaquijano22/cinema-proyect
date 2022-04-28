@@ -1,15 +1,11 @@
 import { Container } from "@mui/material";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { InfoList } from "../../components/common/parts";
 import { Layout } from "../../components/layout";
-import { AuthContext } from "../../context/Auth";
 import { WithAuth } from "../../hoc"
-import { useAuth, useInfoDB } from "../../hooks";
+import { useInfoDB } from "../../hooks";
 
 const Home = () => {
-
-    const { logout } = useAuth()
-
     const { itemsFb, getItemsFb } = useInfoDB()
 
 
@@ -21,7 +17,7 @@ const Home = () => {
     return (
         <Layout>
             <Container>
-                <InfoList information={itemsFb} />
+                <InfoList information={itemsFb} site="home"/>
             </Container>
         </Layout>
     )

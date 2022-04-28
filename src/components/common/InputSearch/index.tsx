@@ -8,6 +8,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 const Search = styled(Box)`
   display:flex;
   color: #20b2aa;
+  align-items: center;
+  gap:5px;
   :hover {
     color: #2e8b57;
   }
@@ -30,7 +32,7 @@ const InputSearch = () => {
   return (
     <Search>
       <SearchIconWrapper>
-        <SearchIcon />
+        <SearchIcon color="secondary"/>
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
