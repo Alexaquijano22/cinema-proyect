@@ -1,19 +1,15 @@
-import { Container } from "@mui/material"
-import { FC } from "react"
-import styled from "styled-components"
+import { Box, Container } from "@mui/material";
+import { FC } from "react";
+import styled from "styled-components";
 
-const MainTag = styled(Container)`
-    height: 100vh;
-    display: flex;
-    align-items: center;
-`
+const MainTag = styled(Box)`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`;
 
-const Main: FC = ({children}) => {
-    return (
-        <MainTag>
-            {children}
-        </MainTag>
-    )
-}
+const Main: FC = ({ children }) => {
+  return <MainTag>{children}</MainTag>;
+};
 
-export {Main}
+export { Main };

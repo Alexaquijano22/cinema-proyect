@@ -1,31 +1,22 @@
-import { Button } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import styled from "styled-components"
 import { FC } from "react"
 
-interface InterfaceButton {
-    isprimary?: boolean;
-    type?: "button" | "submit" | "reset" | undefined;
-    color?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined;
-    variant?: "text" | "outlined" | "contained" | undefined;
-}
-
-const CommonButton = styled(Button)<InterfaceButton>`
- 	
-`;
-
 type Props = {
     onClick?: () => any;
-    primary?: boolean;
     type?: "button" | "submit" | "reset" | undefined;
     color?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined;
     variant?: "text" | "outlined" | "contained" | undefined;
+    text?: string;
+    sx?: {}
 }
 
-const Buttons: FC<Props> = ({ children, onClick, primary, type, color, variant }) => {
+const Buttons: FC<Props> = ({ children, onClick, type, color, variant, text, sx }) => {
     return (
-        <CommonButton onClick={onClick} isprimary={primary} type={type} color={color} variant={variant}>
-            {children}
-        </CommonButton>
+        <Button onClick={onClick} type={type} color={color} variant={variant} sx={sx}>
+            <Typography style={{ fontWeight: "600"}} variant="subtitle1">{text}</Typography>
+                {children}
+        </Button>
     )
 }
 

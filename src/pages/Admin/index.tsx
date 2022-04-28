@@ -22,13 +22,11 @@ const Admin: FC = () => {
 
 
     return (
-        <>
             <Layout>
                 <Container>
-                    <InfoList information={information?.results} page={information?.page} totalPages={information?.total_pages} totalResults={information?.total_results} />
+                    <InfoList information={information?.results} page={information?.page} totalPages={information?.total_pages} totalResults={information?.total_results} site="admin"/>
                 </Container>
             </Layout>
-        </>
     )
 }
 

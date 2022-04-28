@@ -9,10 +9,12 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { FC, MouseEvent, useState } from "react";
+import { FC, MouseEvent, useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { InputSearch, Links } from "../../common";
 import { useAuth } from "../../../hooks";
+import { Grid, lighten } from "@mui/material";
+import { AuthContext } from "../../../context/Auth";
 
 type Props = {
   pages: string[];
@@ -27,6 +29,7 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
   const [ubication, setUbication] = useState(
     location.pathname === "/admin" ? "admin" : location.pathname
   );
+  const { state, dispatch } = useContext(AuthContext);
   const { logout } = useAuth();
   const history = useNavigate();
 
@@ -44,8 +47,10 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
 
   const handleCloseUserMenu = (option: string) => {
     setAnchorElUser(null);
-    if (option === "Logout") {
+    if (option === "Cerrar sesión") {
       logout();
+    } else if(option === "Usuarios") {
+      history("/users")
     }
   };
 
@@ -93,7 +98,12 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Links
+                  <Links
+                      colorText="dark"
+                        underline="none"
+                        variant="h4"
+                        text={page}
+                        variantText="h6"
                         onClick={() =>
                         page === "movies"
                             ? history("/movies")
@@ -106,7 +116,7 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
                             : history("/")
                         }
                     >
-                          <Typography color="primary">{page}</Typography> 
+                          <Typography color="primary"></Typography> 
                   </Links>
                 </MenuItem>
               ))}
@@ -123,12 +133,18 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: "none", md: "flex" },
+              display: { xs: "none", md: "flex", gap:"20px" },
               justifyContent: "center",
             }}
           >
             {pages.map((page) => (
-                <Links
+
+              <Links key={page}
+                color="dark"
+                  underline="hover"
+                  variant="h4"
+                  text={page}
+                  variantText="h6"
                   onClick={() =>
                     page === "movies"
                       ? history("/movies")
@@ -149,9 +165,9 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
           {rol === "admin" && ubication === "admin" ? <InputSearch /> : null}
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Ajustes" color="secondary">
               <IconButton onClick={(e) => handleOpenUserMenu(e)} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={state.userLogged.name} src="/static/images/avatar/2.jpg" sx={{ background: theme => lighten(theme.palette.primary.dark, 0.5) , color: theme => lighten(theme.palette.primary.contrastText, 0.5)}}/>
               </IconButton>
             </Tooltip>
             <Menu

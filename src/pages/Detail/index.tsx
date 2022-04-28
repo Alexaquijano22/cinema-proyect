@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { useEffect } from "react";
 import { CardDetail } from "../../components/common";
 import { InfoList } from "../../components/common/parts";
@@ -27,8 +28,10 @@ const Detail = () => {
 
     return (
         <Layout>
-            <CardDetail infoCard={item} videos={videosItem} />
-            <InfoList information={itemsFb} />
+            <Container>
+                <CardDetail infoCard={item} videos={videosItem} />
+                <InfoList information={itemsFb} />
+            </Container>
         </Layout>
     )
 }

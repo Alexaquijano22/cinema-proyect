@@ -8,6 +8,7 @@ type Props = {
     hideMain?: boolean;
     hideAside?: boolean;
     hideFooter?: boolean;
+    
 }
 
 const Layout: FC<Props> = ({ hideHeader, hideMain, children }) => {

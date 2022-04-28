@@ -1,51 +1,115 @@
-import { FC, FormEvent, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Box, Grid, TextField, Typography } from "@mui/material";
+import { FC, useState } from "react";
+import { useForm } from "react-hook-form";
 import { User } from "../../../types";
-import { signUp } from "./api";
+import { Buttons } from "../../common";
+import { validationSquema } from "./validation-squema";
+import { PayloadAddUser, signUp } from "./api";
 
-const defaultValues: Omit<User,'id'> = {
-    name: "",
-    lastName: "",
-    birthdate: "",
-    email: "",
-    password: "",
-    rol: "user",
-    viewed: []
-}
+const defaultValues: Omit<User, "id"> = {
+  name: "",
+  lastName: "",
+  birthdate: "",
+  email: "",
+  password: "",
+  rol: "user",
+  viewed: [],
+};
 
 const SignUp: FC = () => {
+  const onSubmit = (data: PayloadAddUser) => {
+    signUp(data);
+  };
 
-    const [inputs, setInputs] = useState(defaultValues)
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(validationSquema),
+    defaultValues,
+  });
 
-    const handleSubmit = (e: FormEvent<HTMLElement>) => {
-        e.preventDefault()
-        signUp(inputs)
-    }
+  return (
+    <form action="" onSubmit={handleSubmit(onSubmit)}>
+      <Grid container spacing={2} style={{ padding: "0em 0em 1.5em 0em" }}>
+        <Grid item xs={12} md={6}>
+          <TextField
+            sx={{ m: "0em 0em 0.2em 0em" }}
+            placeholder="Ingresa tu nombre"
+            fullWidth
+            id="name"
+            label="Nombre"
+            type="text"
+            {...register("name")}
+          />
+          <Typography>{errors.name?.message}</Typography>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            sx={{ m: "0em 0em 0.2em 0em" }}
+            placeholder="Ingresa tu apellido"
+            fullWidth
+            id="lastName"
+            label="Apellido"
+            type="text"
+            {...register("lastName")}
+          />
+          <Typography>{errors.lastName?.message}</Typography>
+        </Grid>
 
-    return (
-        <form action="" onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="name">Nombre</label>
-                <input id="name" type="text" name="name" value={inputs.name} onChange={(e) => setInputs({ ...inputs, name: e.target.value })} />
-            </div>
-            <div>
-                <label htmlFor="lastName">Apellido</label>
-                <input id="lastName" type="text" name="lastName" value={inputs.lastName} onChange={(e) => setInputs({ ...inputs, lastName: e.target.value })} />
-            </div>
-            <div>
-                <label htmlFor="birthdate">Fecha de nacimiento</label>
-                <input id="birthdate" type="text" name="birthdate" value={inputs.birthdate} onChange={(e) => setInputs({ ...inputs, birthdate: e.target.value })} />
-            </div>
-            <div>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="email" name="email" value={inputs.email} onChange={(e) => setInputs({ ...inputs, email: e.target.value })} />
-            </div>
-            <div>
-                <label htmlFor="pass">Contraseña</label>
-                <input id="pass" type="text" name="pass" value={inputs.password} onChange={(e) => setInputs({ ...inputs, password: e.target.value })} />
-            </div>
-            <button type="submit">Crear usuario</button>
-        </form>
-    )
-}
+        <Grid item xs={12} md={6}>
+          <TextField
+            sx={{ m: "0em 0em 0.2em 0em" }}
+            placeholder="Ingresa tu correo electrónico"
+            fullWidth
+            id="email"
+            label="Correo electrónico"
+            type="text"
+            {...register("email")}
+          />
+          <Typography>{errors.email?.message}</Typography>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            sx={{ m: "0em 0em 0.2em 0em", width: "100%" }}
+            fullWidth
+            id="birthdate"
+            label="Fecha de nacimiento"
+            type="date"
+            {...register("birthdate")}
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+          <Typography>{errors.birthdate?.message}</Typography>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            sx={{ m: "0em 0em 0.2em 0em" }}
+            placeholder="Ingresa tu contraseña"
+            fullWidth
+            id="pass"
+            label="Contraseña"
+            type="password"
+            {...register("password")}
+          />
+          <Typography>{errors.password?.message}</Typography>
+        </Grid>
+      </Grid>
+      <Box
+        sx={{ display: "flex", justifyContent: "center", marginBottom: "1.5em" }}
+      >
+        <Buttons
+          text="Crear cuenta"
+          type="submit"
+          color="primary"
+          variant="contained"
+        ></Buttons>
+      </Box>
+    </form>
+  );
+};
 
-export { SignUp }
+export { SignUp };
