@@ -5,5 +5,3 @@ export const FORM_VALIDATIONS = {
         EIGTH: "Debe tener al menos 8 caracteres"
     }
 }
-
-// const passwordValid= /^(?=.*[a-z])(?=.*\d)[a-z\d\w\W]{8,}$/

@@ -13,17 +13,12 @@ import {
 } from "./pages";
 import GlobalStyle from "./global-style/globalStyles";
 import styled from "styled-components";
-import { AdminProvider } from "./context/Admin";
 import {
   createTheme,
-  PaletteMode,
   Paper,
   ThemeProvider,
   useMediaQuery,
   lighten,
-  Box,
-  Alert,
-  AlertTitle
 } from "@mui/material";
 
 const PaperApp = styled(Paper)`
@@ -125,7 +120,6 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <AdminProvider>
        
           <ThemeProvider theme={theme}>
             <PaperApp
@@ -155,7 +149,6 @@ const App: FC = () => {
               </Routes>
             </PaperApp>
           </ThemeProvider>
-        </AdminProvider>
       </AuthProvider>
     </BrowserRouter>
   );

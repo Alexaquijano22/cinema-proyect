@@ -1,8 +1,6 @@
-import { Box, Input, InputBase } from "@mui/material";
+import { Box, InputBase } from "@mui/material";
 import styled from "styled-components"
 import SearchIcon from "@mui/icons-material/Search"
-import { useContext } from "react";
-import { AdminContext } from "../../../context/Admin";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Search = styled(Box)`

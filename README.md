@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# Cinema proyect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+• Recursos:
 
-## Available Scripts
+React Js version: 17.0.2
 
-In the project directory, you can run:
+API: https://www.themoviedb.org/
 
-### `npm start`
+Material UI
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Firebase
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Consigna
 
-### `npm test`
+En este proyecto vas a crear una aplicación que se basará en la gestión y uso de una plataforma de contenido cinematográfico. Se conecta a una api de películas y series de donde se obtendra toda la información necesaria para nutrir la aplicación de contenidos.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Actores, funciones y responsabilidades
 
-### `npm run build`
+• Administrador
+    - Iniciar sesión con "role admin".
+    - Acceso a todas las paginas del sitio.
+    - Seleccionar items (peliculas o series) de la api para agregar a la plataforma (DB) de reproducción.
+    - Eliminar items (peliculas o series) de la plataforma (DB).
+    - Eliminar usuarios.
+• Usuario
+    - Iniciar sesión con "role user".
+    - Acceso solo a películas, series y detalle.
+    - Los items (películas y series) pueden ser marcadas como vistos.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Pantallas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+• Signup
+    - Esta pantalla contendrá un formulario que permitirá crear usuarios en la base de datos.
+    - Los usuarios se crean con el role “user” por defecto.
+    - Tendremos que cambiar, directamente desde firebase, el role de uno de los usuarios a “admin”.
+    - Validaciones 
+• Login
+    - Formulario de inicio de sesión que solicita usuario y contraseña.
+    - Validaciones 
+• Admin
+    - Esta pantalla listará las películas mejor ranqueadas
+    - Tendrá un buscador que en caso de contener texto realizará una busqueda multiple (peliculas, series, personas, etc) 
+    - Para ambos casos previos, dispondremos de una paginación que se ajuste a los resultados.
+    - Paginación numérica
+    - Los items (películas y series) se presentarán con una imagen y los datos mas relevantes.
+    - Cada item deberá tener un botón que permita dar de alta la totalidad de sus datos en la base de datos de la aplicación.
+    - Los items que ya existen en la base de datos, deberen contener un botón que permita eliminarlos.
+• Home
+    - Esta pantalla debe listar todos los items dados de alta en la base de datos.
+    - Al hacer click sobre un item, se debe abrir la pagina “Detail”.
+    - Los items deben contener un botón que permita marcarlos como vistos para el usuario en sesión.
+• Películas
+    - Esta pantalla debe listar solo las películas dadas de alta en la base de datos.
+    - Al hacer click sobre un item, se debe abrir la pagina “Detail”.
+    - Las películas deben contener un botón que permita marcarlas como vistas para el usuario en sesión.
+• Series
+    - Esta pantalla debe listar solo las películas dadas de alta en la base de datos.
+    - Al hacer click sobre un item, se debe abrir la pagina “Detail”.
+    - Las películas deben contener un botón que permita marcarlas como vistas para el usuario en sesión.
+• Detail
+    - En esta pantalla se podrá ver la información detallada de la película, poster y trailers y un listado con el resto de los items (películas y series) disponibles.

@@ -5,10 +5,8 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  CardActions,
   Box,
-  Grid,
-  Rating,
+  Grid
 } from "@mui/material";
 import { Buttons, CardLogin } from "../index";
 import { useInfoDB } from "../../../hooks";
@@ -43,11 +41,10 @@ const CardComponent: FC<Props> = ({ information }) => {
   };
 
   const changeStateItem = (info: Item, action: string) => {
-    //Recordar agregar el id del usuario en la base de datos
     if (action === "add") {
-      addToItemsViewed(state.userLogged?.idDB, info.id);
+      addToItemsViewed(state.userLogged?.idDB, info.idDB);
     } else {
-      deleteToItemsViewed(state.userLogged?.idDB, info.id);
+      deleteToItemsViewed(state.userLogged?.idDB, info.idDB);
     }
   };
 
@@ -110,7 +107,7 @@ const CardComponent: FC<Props> = ({ information }) => {
                       onClick={() => addOrDeleteItem(information, "add")}
                     ></Buttons>
                   )
-                ) : isItemViewed(`${information.id}`) === true ? (
+                ) : isItemViewed(`${information.idDB}`) === true ? (
                   <Buttons
                     sx={{ borderRadius: "60px", padding: "2px 12px" }}
                     color="primary"

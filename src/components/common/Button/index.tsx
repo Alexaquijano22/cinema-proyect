@@ -1,6 +1,5 @@
-import { Button, Typography } from "@mui/material"
-import styled from "styled-components"
 import { FC } from "react"
+import { Button, Typography } from "@mui/material"
 
 type Props = {
     onClick?: () => any;

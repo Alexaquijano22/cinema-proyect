@@ -2,7 +2,6 @@ import { FC } from "react"
 import { useLocation, useNavigate } from "react-router-dom";
 import { Loading } from "../../components/common";
 import { useAuth } from "../../hooks";
-import { Login } from "../../pages";
 
 type withAuthenticationFn = (Component: FC) => FC
 

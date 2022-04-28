@@ -54,6 +54,17 @@ const useAuth = () => {
                     message: "El usuario o la contraseña son incorrectos, intentalo de nuevo"
                 }
             })
+            setTimeout(() => {
+                dispatch({
+                  type: "ALERT",
+                  payload: {
+                    state: false,
+                    mode: "success",
+                    title: "",
+                    message: ""
+                  }
+                })
+              }, 4000);
         }
 
     }
