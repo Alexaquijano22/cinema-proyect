@@ -12,10 +12,6 @@ const useInfoDB = () => {
     const [videosItem, setVideosItem] = useState<Video[]>();
     const { state, dispatch } = useContext(AuthContext)
 
-    useEffect(() => {
-        getItemsFb()
-    }, [])
-
     const getMoviesDB = async (page: string | null) => {
         try {
             const response = await apiMoviesDB.get(`/movie/top_rated?page=${Number(page === null ? "1" : page)}`)

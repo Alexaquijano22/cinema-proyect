@@ -34,7 +34,7 @@ const InfoList: FC<Props> = ({ information, page, totalPages, site }) => {
 
     return (
         <>
-            <Grid container spacing={{ xs: 8, md: 4 }} columns={{ xs: 1, sm: 8, md: 24 }} style={{ paddingTop: "9em" }}>
+            <Grid container spacing={{ xs: 8, md: 4 }} columns={{ xs: 1, sm: 8, md: 24 }} style={{ paddingTop: "9em", paddingBottom: site === "detail" ? "1em" : "0em" }}>
                 {site === "admin" ? (
                     information?.map((item) => {
                         return (
@@ -51,7 +51,9 @@ const InfoList: FC<Props> = ({ information, page, totalPages, site }) => {
                 )
             })}
             </Grid>
-            <Pagination totalPages={site === "admin" ? totalPages : Math.ceil(total / limit)} page={site === "admin" ? page : Number(pageParam)} site={site} />
+            {site !== "detail" ? (
+                <Pagination totalPages={site === "admin" ? totalPages : Math.ceil(total / limit)} page={site === "admin" ? page : Number(pageParam)} site={site} />
+            ): null}
         </>
     )
 }

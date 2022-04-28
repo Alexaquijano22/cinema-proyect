@@ -10,11 +10,10 @@ import {
   Grid,
   Rating,
 } from "@mui/material";
-import { Buttons } from "../index";
+import { Buttons, CardLogin } from "../index";
 import { useInfoDB } from "../../../hooks";
 import { AuthContext } from "../../../context/Auth";
 import { useNavigate } from "react-router-dom";
-import { CardLogin } from "../CardLogin";
 import StarIcon from "@mui/icons-material/Star";
 
 type Props = {

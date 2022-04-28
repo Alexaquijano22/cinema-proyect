@@ -30,7 +30,7 @@ const Detail = () => {
         <Layout>
             <Container>
                 <CardDetail infoCard={item} videos={videosItem} />
-                <InfoList information={itemsFb} />
+                <InfoList information={itemsFb} site="detail"/>
             </Container>
         </Layout>
     )

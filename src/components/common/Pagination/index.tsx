@@ -34,6 +34,10 @@ const PaginationC: FC<Props> = ({ totalPages, page, site }) => {
             window.scroll(0, 0)
         } else if(site === "home"){ 
             history(`/?page=${page}`)
+        } else if (site === "series") {
+            history(`/series?page=${page}`)
+        } else if (site === "movies") {
+            history(`/movies?page=${page}`)
         }
     }
 
