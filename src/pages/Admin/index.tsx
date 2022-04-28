@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from "react"
+import { FC, useEffect } from "react"
 import { useSearchParams } from "react-router-dom";
 import { InfoList } from "../../components/common/parts";
 import { Layout } from "../../components/layout";

@@ -2,7 +2,6 @@ import { Box, Grid, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Layout } from "../../layout";
-// Ring loader - libreria para react de spinners
 
 const Loading: FC = () => {
     return (
@@ -18,8 +17,8 @@ const Loading: FC = () => {
                     gap: "15px"
                 }}
             >
-                <ClipLoader color="primary" loading={true} size={100} />
-                <Typography variant="h5">Cargando...</Typography>
+                <ClipLoader color="primary" loading={true} size={70} />
+                <Typography variant="h6">Cargando...</Typography>
             </Box>
         </Layout>
     );

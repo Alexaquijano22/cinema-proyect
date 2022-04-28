@@ -1,13 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-  Alert,
-  AlertTitle,
   Box,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
-import { FC, useContext, useState } from "react";
+import { FC, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { User } from "../../../types";
 import { Buttons } from "../../common";
@@ -23,7 +21,7 @@ const defaultValues: Omit<User, "id"> = {
   email: "",
   password: "",
   rol: "user",
-  viewed: [],
+  viewed: [""],
 };
 
 const SignUp: FC = () => {

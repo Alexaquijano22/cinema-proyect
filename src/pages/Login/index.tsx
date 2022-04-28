@@ -85,6 +85,7 @@ const Login: FC = () => {
           position: "relative",
           width: "100%",
           display: "flex",
+          height: "100vh",
         }}
       >
         <Box
@@ -137,7 +138,6 @@ const Login: FC = () => {
                       variant="h4"
                       text="Acceder"
                       variantText="h4"
-                      
                     ></Links>
                     <Links
                       underline="none"
@@ -150,17 +150,23 @@ const Login: FC = () => {
                   <Box sx={{ m: "1em 0em 1em 0em" }}>
                     <Typography>Llena los campos para ingresar</Typography>
                   </Box>
-                    <LoginForm />
-                    <Typography>
-                      ¿Aun no tienes cuenta?{" "}
-                    <Typography
-                        style={{cursor:"pointer"}}
-                        component="span"
-                        onClick={() => history("/sign-up")}
-                      >
-                        Ir a registrar una cuenta
-                      </Typography>
+                  <LoginForm />
+                  <Typography variant="subtitle1">
+                    ¿Aun no tienes cuenta?{" "}
+                    <Typography variant="subtitle1"
+                      style={{ cursor: "pointer" }}
+                      component="span"
+                      onClick={() => history("/sign-up")}
+                    >
+                      Ir a registrar una cuenta
                     </Typography>
+                  </Typography>
+                  <Typography sx={{marginTop: "0.5em"}}>
+                    Para acceder como administrador, utilizar los siguientes
+                    datos:
+                  </Typography>
+                  <Typography>Usuario: admin@cinemada.com</Typography>
+                  <Typography>Contraseña: 012345678</Typography>
                 </CardContent>
               </Container>
             </CardLogin>

@@ -9,7 +9,6 @@ import { Item } from "../../types"
 const Series: FC = () => {
 
     const { itemsFb, getSeriesFb } = useInfoDB();
-    const [items, setItems] = useState<Item[]>([])
 
     useEffect(() => {
         getSeriesFb()

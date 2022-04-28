@@ -76,7 +76,7 @@ const Users = () => {
 
   return (
     <Layout>
-      <Container sx={{ paddingTop: "8em" }}>
+      <Container sx={{ paddingTop: "6em" }}>
           <TableContainer color="secondary" component={Paper}>
             <Table stickyHeader aria-label="customized table">
               <TableHead >

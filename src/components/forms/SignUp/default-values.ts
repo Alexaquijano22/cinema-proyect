@@ -5,6 +5,6 @@ export const defaultValues = {
     lastName: '',
     birthdate: '',
     sessionToken: '',
-    viewed: [],
+    viewed: [''],
     rol: 'user'
 }

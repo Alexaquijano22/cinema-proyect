@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/Auth";
 import { mapToArray } from "../../helpers";
 import { Data, Item, Video } from "../../types";
@@ -135,7 +135,7 @@ const useInfoDB = () => {
         }
     }
 
-    const addToItemsViewed = async (idUser: string | undefined, idItem: number | undefined) => {
+    const addToItemsViewed = async (idUser: string | undefined, idItem: string | undefined) => {
         try {
             state.userLogged.viewed?.push(`${idItem}`)
             await apiFirebase.patch(`/users/${idUser}.json`, { viewed: state.userLogged?.viewed })
@@ -145,7 +145,7 @@ const useInfoDB = () => {
         }
     }
 
-    const deleteToItemsViewed = async (idUser: string | undefined, idItem: number | undefined) => {
+    const deleteToItemsViewed = async (idUser: string | undefined, idItem: string | undefined) => {
         try {
             const indexId = state.userLogged.viewed?.indexOf(`${idItem}`)
             if (indexId) state.userLogged.viewed?.splice(indexId, 1)

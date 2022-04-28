@@ -10,10 +10,10 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { FC, MouseEvent, useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { InputSearch, Links } from "../../common";
 import { useAuth } from "../../../hooks";
-import { Grid, lighten } from "@mui/material";
+import { lighten } from "@mui/material";
 import { AuthContext } from "../../../context/Auth";
 
 type Props = {

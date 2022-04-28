@@ -1,8 +1,7 @@
 
 import { Grid } from "@mui/material"
-import { FC, useContext } from "react"
+import { FC } from "react"
 import { useSearchParams } from "react-router-dom"
-import { AuthContext } from "../../../../context/Auth"
 import { Item } from "../../../../types"
 import { Card, Pagination } from "../../../common"
 
