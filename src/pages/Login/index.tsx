@@ -19,13 +19,6 @@ import hope from "../../assets/images/hope.jpg";
 import monstersInk from "../../assets/images/monstersInk.webp";
 import { CardLogin, Links } from "../../components/common";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-
-const ContainerLogin = styled(Container)`
-  &.css-1oqqzyl-MuiContainer-root {
-    max-width: 560px;
-  }
-`;
 
 const Login: FC = () => {
   const history = useNavigate();
@@ -123,7 +116,7 @@ const Login: FC = () => {
             alignItems: "center",
           }}
         >
-          <ContainerLogin style={{ margin: "1em" }}>
+          <Container style={{ margin: "1em", maxWidth: "560px" }}>
             <CardLogin>
               <Container sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
@@ -170,7 +163,7 @@ const Login: FC = () => {
                 </CardContent>
               </Container>
             </CardLogin>
-          </ContainerLogin>
+          </Container>
         </Box>
       </Box>
     </Layout>
