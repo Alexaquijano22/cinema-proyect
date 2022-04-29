@@ -1,11 +1,15 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { FC, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Layout } from "../../layout";
 
 const Loading: FC = () => {
+
+    const location = useLocation();
+
     return (
-        <Layout>
+        <Layout hideHeader={location.pathname === "/login" || location.pathname === "/sign-up" ? true : false}>
             <Box
                 sx={{
                     height: "100vh",

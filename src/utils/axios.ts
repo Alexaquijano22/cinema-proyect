@@ -7,7 +7,8 @@ const apiFirebase = axios.create({
 const apiMoviesDB = axios.create({
     baseURL: 'https://api.themoviedb.org/3', 
     params: {
-        api_key: "e011a0c8a14e3792de8063a93825ea39"
+        api_key: "e011a0c8a14e3792de8063a93825ea39",
+        language: "es-US"
     }
 })
 

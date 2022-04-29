@@ -32,7 +32,7 @@ const CardDetail: FC<Props> = ({ infoCard, videos }) => {
                         </Grid>
                         <Grid xs={12} sm container >
                             <Grid item xs container direction="column" spacing={2} >
-                                <Grid item xs>
+                                <Grid item xl>
                                     {infoCard?.media_type === "movie" ? (
                                         <Box sx={{ display: "flex", flexDirection: "column", marginBottom:"15px" }} component="div">
                                             <Typography variant="h4" component="div" gutterBottom>{infoCard?.title}</Typography>

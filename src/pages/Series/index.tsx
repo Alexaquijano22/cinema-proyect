@@ -1,26 +1,33 @@
-import { Container } from "@mui/material"
-import { FC, useEffect, useState } from "react"
-import { InfoList } from "../../components/common/parts"
-import { Layout } from "../../components/layout"
-import { WithAuth } from "../../hoc"
-import { useInfoDB } from "../../hooks"
-import { Item } from "../../types"
+import { Container, Typography } from "@mui/material";
+import { FC, useEffect, useState } from "react";
+import { InfoList } from "../../components/common/parts";
+import { Layout } from "../../components/layout";
+import { WithAuth } from "../../hoc";
+import { useInfoDB } from "../../hooks";
 
 const Series: FC = () => {
+  const { itemsFb, getSeriesFb } = useInfoDB();
 
-    const { itemsFb, getSeriesFb } = useInfoDB();
+  useEffect(() => {
+    getSeriesFb();
+  }, []);
 
-    useEffect(() => {
-        getSeriesFb()
-    }, [])
+  return (
+    <Layout>
+      <Container>
+        {itemsFb?.length > 0 ? (
+          <InfoList information={itemsFb} site="series" />
+        ) : (
+          <Container style={{ paddingTop: "9em", paddingBottom: "0em" }}>
+            <Typography variant="h6">
+              No se han encontrado series agregadas a la base de
+              datos.
+            </Typography>
+          </Container>
+        )}
+      </Container>
+    </Layout>
+  );
+};
 
-    return (
-        <Layout>
-            <Container>
-                <InfoList information={itemsFb} site="series"/>
-            </Container>
-        </Layout>
-    )
-}
-
-export const SeriesPage = WithAuth(Series)
+export const SeriesPage = WithAuth(Series);
