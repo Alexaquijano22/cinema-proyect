@@ -2,8 +2,8 @@ import { Navbar } from '../Navbar';
 import { AuthContext } from '../../../context/Auth';
 import { useContext } from 'react';
 
-const pagesUser = ['home', 'movies', 'series'];
-const pagesAdmin = ['home', 'movies', 'series','admin'];
+const pagesUser = ['inicio', 'peliculas', 'series'];
+const pagesAdmin = ['inicio', 'peliculas', 'series','admin'];
 const settingsUsers = ['Cerrar sesión'];
 const settingsAdmin = ['Usuarios', 'Cerrar sesión'];
 

@@ -33,7 +33,7 @@ const InputSearch = () => {
         <SearchIcon color="secondary"/>
       </SearchIconWrapper>
       <StyledInputBase
-        placeholder="Search…"
+        placeholder="Buscar..."
         value={search}
         onChange={(e) => {
           history(`/admin?search=${e.target.value}`)

@@ -1,25 +1,10 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./context/Auth";
-import {
-  Admin,
-  Detail,
-  Home,
-  Login,
-  Movies,
-  Series,
-  SignUp,
-  Users,
-} from "./pages";
+import {  Admin, Detail, Home, Login, Movies, Series, SignUp, Users} from "./pages";
 import GlobalStyle from "./global-style/globalStyles";
 import styled from "styled-components";
-import {
-  createTheme,
-  Paper,
-  ThemeProvider,
-  useMediaQuery,
-  lighten,
-} from "@mui/material";
+import {createTheme, Paper, ThemeProvider, useMediaQuery, lighten} from "@mui/material";
 
 const PaperApp = styled(Paper)`
   &.css-ql5gy6-MuiPaper-root {
@@ -29,7 +14,6 @@ const PaperApp = styled(Paper)`
   &.css-1v4eudz-MuiPaper-root{
     background: #ebebeb; 
   }
-  
 `;
 
 const App: FC = () => {
@@ -120,7 +104,6 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-       
           <ThemeProvider theme={theme}>
             <PaperApp
               style={{ height: "100vh", overflowY: "auto" }}

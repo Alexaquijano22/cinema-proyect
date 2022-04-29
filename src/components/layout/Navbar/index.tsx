@@ -103,17 +103,19 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
                         underline="none"
                         variant="h4"
                         text={page}
-                        variantText="h6"
+                        variantText="body1"
                         onClick={() =>
-                        page === "movies"
+                        page === "peliculas"
                             ? history("/movies")
                             : page === "admin"
                             ? history(`/admin`)
                             : page === "series"
                             ? history("/series")
-                            : page === "users"
+                            : page === "usuarios"
                             ? history("/users")
-                            : history("/")
+                            : page === "inicio"
+                            ? history("/")
+                            : null
                         }
                     >
                           <Typography color="primary"></Typography> 
@@ -126,7 +128,7 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+            sx={{ flexGrow: 1, display: { xs: location.pathname === "/admin" ? "none" : "flex", md: "none" } }}
           >
             CINEMADA
           </Typography>
@@ -146,15 +148,17 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
                   text={page}
                   variantText="h6"
                   onClick={() =>
-                    page === "movies"
+                    page === "peliculas"
                       ? history("/movies")
                       : page === "admin"
                       ? history(`/admin`)
                       : page === "series"
                       ? history("/series")
-                      : page === "users"
+                      : page === "usuarios"
                       ? history("/users")
-                      : history("/")
+                      : page === "inicio"
+                      ? history("/")
+                      : null
                   }
                 >
                   <Typography noWrap variant="h6">{page}</Typography>
@@ -162,7 +166,7 @@ const Navbar: FC<Props> = ({ pages, settings, rol }) => {
             ))}
           </Box>
 
-          {rol === "admin" && ubication === "admin" ? <InputSearch /> : null}
+          {rol === "admin" && location.pathname === "/admin" ? <InputSearch /> : null}
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Ajustes" color="secondary">
