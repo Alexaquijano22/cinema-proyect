@@ -60,7 +60,7 @@ const CardComponent: FC<Props> = ({ information }) => {
     <Card sx={{ position: "relative" }}>
       <CardMedia
         onClick={() => loadDetail(information.idDB)}
-        sx={{ position: "relative" }}
+        sx={{ position: "relative", cursor:"pointer" }}
         component="img"
         alt="green iguana"
         height="450"
@@ -89,6 +89,7 @@ const CardComponent: FC<Props> = ({ information }) => {
                   <StarIcon color="primary"></StarIcon>
                   <Typography variant="body1" sx={{fontWeight:"600"}}>{information.vote_average}</Typography>
                 </Box>
+              
                 {state.userLogged.rol !== "user" ? (
                   isItemInFb(information.id) === true ? (
                     <Buttons
