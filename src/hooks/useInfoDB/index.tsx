@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/Auth";
 import { mapToArray } from "../../helpers";
 import { Data, Item, Video } from "../../types";
@@ -11,6 +11,10 @@ const useInfoDB = () => {
     const [item, setItem] = useState<Item>();
     const [videosItem, setVideosItem] = useState<Video[]>();
     const { state, dispatch } = useContext(AuthContext)
+
+    useEffect(() => {
+        getItemsFb()
+      }, [])
 
     const getMoviesDB = async (page: string | null) => {
         try {

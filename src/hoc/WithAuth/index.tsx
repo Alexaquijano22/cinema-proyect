@@ -12,21 +12,15 @@ const WithAuth: withAuthenticationFn = (Component) => {
 
 
     const Authenticated: FC = (): JSX.Element | null => {
-        
         const { hasUserLoggedIn } = useAuth();
         const history = useNavigate()
         const location = useLocation()
-        
-        setTimeout(() => {
-            if (hasUserLoggedIn === undefined) return <Loading />
-            if (hasUserLoggedIn && publicRoutes.includes(location.pathname)) history("/")
-            if (hasUserLoggedIn === false && !publicRoutes.includes(location.pathname)) history("/login")
-            
-        }, 1000);
-        
-        return <Component />
-        
 
+        if (hasUserLoggedIn === undefined) return <Loading />
+        if (hasUserLoggedIn && publicRoutes.includes(location.pathname)) history("/")
+        if (hasUserLoggedIn === false && !publicRoutes.includes(location.pathname)) history("/login")
+
+        return <Component />
 
     }
     return Authenticated

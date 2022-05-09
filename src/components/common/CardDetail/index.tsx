@@ -22,7 +22,7 @@ const CardDetail: FC<Props> = ({ infoCard, videos }) => {
             <CardLogin>
                 <CardContent>
                     <Grid container sx={{ gap: "20px" }}>
-                        <Grid item>
+                        <Grid item={true}>
                             <CardMedia
                                 component="img"
                                 sx={{ maxWidth: 500 }}
@@ -30,9 +30,9 @@ const CardDetail: FC<Props> = ({ infoCard, videos }) => {
                                 alt="Image of item"
                             />
                         </Grid>
-                        <Grid xs={12} sm container >
-                            <Grid item xs container direction="column" spacing={2} >
-                                <Grid item xl>
+                        <Grid item xs={12} sm container >
+                            <Grid item={true} xs container direction="column" spacing={2} >
+                                <Grid item={true} xl>
                                     {infoCard?.media_type === "movie" ? (
                                         <Box sx={{ display: "flex", flexDirection: "column", marginBottom:"15px" }} component="div">
                                             <Typography variant="h4" component="div" gutterBottom>{infoCard?.title}</Typography>
@@ -51,7 +51,7 @@ const CardDetail: FC<Props> = ({ infoCard, videos }) => {
                                     </Typography>
 
                                 </Grid>
-                                <Grid item xs>
+                                <Grid item={true} xs>
                                     <Box
                                         sx={{ display: "flex", gap: "5px", flexDirection: "column" }}
                                     >
@@ -82,7 +82,7 @@ const CardDetail: FC<Props> = ({ infoCard, videos }) => {
                         <Grid container spacing={2}>
                             {videos?.map((video) => {
                                 return (
-                                    <Grid item>
+                                    <Grid item={true} key={video.id}>
                                         <iframe
                                             key={video.key}
                                             id={`${video.id}`}
